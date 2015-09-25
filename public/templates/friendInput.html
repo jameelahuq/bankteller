@@ -1,0 +1,51 @@
+<div class="container inputField">
+<h2>{{title}}</h2>
+
+<form id="findFriend table" >
+  <div>
+    <input type="text" class="required" ng-model="friend.name" placeholder="name" required  ng-change="findFriend()"/>
+    <i class="fa fa-asterisk"></i>
+  </div>
+
+  <div>
+    <input type="text" class="required" ng-model="friend.species" placeholder="species" required ng-change="findFriend()"/>
+    <i class="fa fa-asterisk"></i>
+  </div>
+
+    <div><input type="text" placeholder="variety" ng-model="friend.variety" ng-change="findFriend()"/></div>
+
+    <div><input type="text"  placeholder="age" ng-model="friend.age" ng-change="findFriend()"/></div>
+
+    <div ng-model="friend.gender">
+      <input type="radio" ng-model="friend.gender" value="" ng-change="findFriend()"/> N/A
+      <input type="radio" ng-model="friend.gender" value="female" ng-change="findFriend()"/> female
+      <input type="radio" ng-model="friend.gender" value="male" ng-change="findFriend()"/> male
+    </div>
+
+    <div class="isAvailable">
+      <input type="checkbox" ng-model="friend.isAvailable" value="isAvailable" ng-change="findFriend()"> Available To Adopt
+      <i class="fa fa-asterisk"></i>
+    </div>
+
+    <button type="submit" ng-click="addFriend()">Add Friend</button>
+  </form>
+
+  <div class="newFriendBox infoBox">
+    <div> New Friend Added! {{newFriend}}</div>
+    <div> Name: {{newFriend.name}} {{newFriend.gender}} </div>
+    <div> Species: {{newFriend.species}} - {{newFriend.variety}} </div>
+    <div>{{newFriend.isAvailable}} </div>
+  </div>
+
+
+  <div class="row petDisplay">
+      <div ng-repeat="friend in allFriends  | filter: friend"  class ="infoBox span1" ng-click="receiveClick(this)">
+      <!--TODO: repeat over all keys and show key and key value-->
+      <!--TODO: get image and show-->
+        <div> Name: {{friend.name}} {{friend.gender}} </div>
+        <div> Species: {{friend.species}} - {{friend.variety}} </div>
+        <div>{{friend.isAvailable}} </div>
+        <button ng-show="reveal(this)" ng-click="selectFriendToMatch($event, friend)">Match</button>
+    </div>
+  </div>
+</div>

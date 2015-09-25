@@ -1,0 +1,51 @@
+<div class="container inputField">
+<h2>{{title}}</h2>
+
+<form id="findFamily table" >
+  <div>
+    <input type="text" class="required" ng-model="family.name" placeholder="name" required/>
+    <i class="fa fa-asterisk"></i>
+  </div>
+
+  <div>
+    <input type="text" class="required" ng-model="family.phone" placeholder="phone" required/>
+    <i class="fa fa-asterisk"></i>
+  </div>
+
+  <div><input type="text" placeholder="address" ng-model="family.address"/></div>
+  <div><input type="text"  placeholder="notes" ng-model="family.notes"/></div>
+  <div><input type="text"  placeholder="members" ng-model="family.members"/></div>
+
+
+
+  <button type="submit" ng-click="addFamily()">Add Family</button>
+  </form>
+
+  <div class="row petDisplay">
+    <div ng-repeat="family in allFamilies  | filter: family"  class ="infoBox span1" ng-click="receiveClick(this)" >
+      <!--TODO: repeat over all keys and show key and key value-->
+      <!--TODO: get image and show-->
+      <div> Name: {{family.name}} </div>
+      <div> Phone: {{family.phone}} </div>
+        <div ng-repeat="member in family.members" class="members">
+          <div>Name: {{member.name}}</div>
+          <div>Species: {{member.species}}</div>
+        </div>
+      <button ng-show="reveal(this)" ng-click="matchFriendToFamily($event, family)">Match</button>
+    </div>
+  </div>
+
+  <div class="potentialMatch" ng-show="isSelectingMatch()">
+    <div class="newFriendBox infoBox">
+      <div>Pick a family for the following friend...{{noFriend}}</div>
+      <div> Name: {{friend.name}} {{friend.gender}} </div>
+      <div> Species: {{friend.species}} - {{friend.variety}} </div>
+      <div>{{friend.isAvailable}} </div>
+      <button ng-click="cancelMatch()" value="cancel">Cancel Match</button>
+    </div>
+  </div>
+
+</div>
+
+
+

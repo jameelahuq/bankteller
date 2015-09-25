@@ -1,0 +1,96 @@
+@font-face {
+  font-family: Qumpellaka;
+  src: url("../images/QumpellkaNo12.otf");
+}
+
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/cat-pray.jpg");
+  background-size:  auto auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+
+}
+
+.navbar {
+  background-color: papayawhip;
+  border: solid 1px darkgray;
+  opacity: .8;
+  padding: 0px;
+  float: left;
+
+}
+
+.inputField {
+  background-color: papayawhip;
+  opacity: .8;
+  border-radius: 4px;
+  padding: 20px;
+  border: solid 1px darkgray;
+  float: left;
+}
+
+.inputForm {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form div {
+  display: block;
+  margin: 10px;
+}
+
+
+h2 {
+  padding-bottom: 30px;
+}
+
+h1, h2 {
+  font-family: Qumpellaka;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.fa-asterisk{
+  color: #fc0421;
+}
+
+input, .input {
+  background: transparent;
+  border: none;
+  border-bottom: solid lightgrey 1px;
+}
+
+.infoBox {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px;
+  border: 1px solid lightgrey;
+  padding: 15px;
+  background-color: aliceblue;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.hidden {
+  display: none;
+}
+
+.potentialMatch {
+  float:right;
+  top: 0;
+}
+
+.members {
+  background-color: darkseagreen;
+  padding: 5px;
+  margin: 5px;
+  border: lightgrey;
+}
+
+
