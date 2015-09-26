@@ -2,80 +2,78 @@
 <html>
 <head>
     <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
-        body         { padding-top:80px; word-wrap:break-word; }
+        body { padding-top:80px; word-wrap:break-word; }
     </style>
 </head>
+
 <body>
-<div class="container">
+<div>
+  <div class="column panel text-center">
+    <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+    <a href="/logout" class="button small">Logout</a>
+  </div>
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
+  <div class="row">
+      <!-- LOCAL INFORMATION -->
+      <div class="column small-6">
+          <div class="well">
+            <div class="panel">
+            <h3><span class="fa fa-user"></span> Welcome <%= user.local.email %></h3>
 
-    <div class="row">
+              <% if (user.local.email) { %>
+                  <p>
+                    <% var amountTotal = 0;
+                      for (var i =0; i < user.trans.length; i++) {
+                      amountTotal += user.trans[i].amount
+                      } %>
+                    <strong>Balance</strong>: $ <%= amountTotal %></div>
+                    <strong> Transaction History: </strong> <br>
+                      <!--<strong>id</strong>: <%= user._id %><br>-->
+                      <!--<strong>password</strong>: <%= user.local.password %><br>-->
+                    <% var amountTotal = 0; for (var i =0; i < user.trans.length; i++) {%>
+                    <strong> <%= user.trans[i].date %></strong>: $ <%= user.trans[i].amount %><br>
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-
-                <% if (user.local.email) { %>
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br><br>
-                        <!--<strong>password</strong>: <%= user.local.password %><br>-->
-                      <% var amountTotal = 0; for (var i =0; i < user.trans.length; i++) {%>
-                      <strong> <%= user.trans[i].date %></strong>: $ <%= user.trans[i].amount %><br>
-
-                      <% amountTotal += user.trans[i].amount} %>
-                    </p>
-                    <strong>total</strong>: $ <%= amountTotal %><br>
-
-
-              <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
-            </div>
-        </div>
-
-        <!-- FACEBOOK INFORMATION -->
-
-        <!-- TWITTER INFORMATION -->
+                    <% amountTotal += user.trans[i].amount} %>
+                  </p>
 
 
-        <!-- GOOGLE INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well" >
-                <h3 class="text-danger"><span class="Transaction"></span>Transactions</h3>
+            <!--<a href="/unlink/local" class="button">Unlink</a>-->
+              <% } else { %>
+                  <a href="/connect/local" class="button">Connect Local</a>
+              <% } %>
+          </div>
+      </div>
 
-                <% if (user.local.email) { %>
-              <form action="/transaction" method="post">
-                <div class="form-group">
-                  <label>Deposit</label>
-                  <input type="text" class="form-control" name="deposit">
-                </div>
-                <div class="form-group">
-                  <label>Withdrawal</label>
-                  <input type="text" class="form-control" name="withdrawal">
-                </div>
+      <div class="column small-6">
+          <div class="well" >
+              <h3 class="alert"><span class="Transaction"></span>Transactions</h3>
 
-                <button type="submit" class="btn btn-warning btn-lg">Submit</button>
-              </form>
-                <% }  %>
+              <% if (user.local.email) { %>
+            <form action="/transaction" method="post">
+              <div class="form-group">
+                <label>Deposit</label>
+                <input type="number" class="form-control" id="deposit" name="deposit">
+              </div>
+              <div class="form-group">
+                <label>Withdrawal</label>
+                <!--TODO: Include deposit amount when calculating max withdrawal amount-->
+                <input type="number" class="form-control" name="withdrawal" max="<%=amountTotal%>">
+              </div>
 
-            </div>
-        </div>
-    </div>
+              <button type="submit" class="button alert medium">Submit</button>
+            </form>
+              <% }  %>
+          </div>
+      </div>
+  </div>
 
-    <div class="text-center">
-        <p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-        <p>Visit the <a href="http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local">tutorial</a>.</p>
-    </div>
+  <div class="text-center">
+    <p>A demo by <a href="Jameelahuq.com">Jameela Huq</a>.</p>
+    <p>Visit the <a href="http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local">Scotch tutorial</a> for more details.</p>
+  </div>
 
 </div>
 </body>
