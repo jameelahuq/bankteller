@@ -26,14 +26,14 @@
                 <% if (user.local.email) { %>
                     <p>
                         <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %><br>
-                      <% for (tran in user.trans) { var amountTotal = 0;%>
-                      <strong> <%= user.trans[tran].date %></strong>: $ <%= user.trans[tran].amount %>
+                        <strong>email</strong>: <%= user.local.email %><br><br>
+                        <!--<strong>password</strong>: <%= user.local.password %><br>-->
+                      <% var amountTotal = 0; for (var i =0; i < user.trans.length; i++) {%>
+                      <strong> <%= user.trans[i].date %></strong>: $ <%= user.trans[i].amount %><br>
 
-                      <% amountTotal += user.trans[tran].amount} %>
+                      <% amountTotal += user.trans[i].amount} %>
                     </p>
-                    <strong>total</strong>: <%= amountTotal %><br>
+                    <strong>total</strong>: $ <%= amountTotal %><br>
 
 
               <a href="/unlink/local" class="btn btn-default">Unlink</a>

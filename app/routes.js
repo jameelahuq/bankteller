@@ -1,6 +1,6 @@
 module.exports = function(app, passport) {
   var Trans = require('./models/transaction');
-  var User = require('./models/user')
+  var User = require('./models/user');
 // normal routes ===============================================================
 
   // show the home page (will also have our login links)
@@ -11,9 +11,9 @@ module.exports = function(app, passport) {
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
     User.findById(req.user._id, function(err, user) {
-      console.log(user);
+      console.log(user.trans);
       res.render('profile.ejs', {
-        user: user,
+        user: user
       });
       //res.send(err || user);
     }).populate('trans');
@@ -166,16 +166,18 @@ module.exports = function(app, passport) {
   // google ---------------------------------
   app.post('/transaction', isLoggedIn, function (req, res) {
     var user = req.user;
-    var newTrans = new Trans({date: Date.now(), amount: req.body.deposit});
+
+    var newTrans = new Trans({date: Date.now(), amount: (req.body.deposit - req.body.withdrawal)});
+
     newTrans.save(function (err) {
       if (err) {
         res.status(400);
+        res.send(err);
       }
       console.log(newTrans);
     });
 
     user.trans.push(newTrans._id);
-    console.log(user);
 
     user.save(function(err) {
       if (err)
